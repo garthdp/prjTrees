@@ -24,49 +24,18 @@
             tree.Root.Children.Add(new TreeNode<int>() {Data = 70, Parent = tree.Root});
 
             Console.WriteLine("Data of child " + tree.Root.Children[0].Children[1].Data.ToString());
-            int count1 = 0;
-            int count2 = 0;
-            bool parent = false;
-            bool child = false;
-            string values = "";
-            while (parent == false)
-            {
-                string parentAndChild = "";
-                try
-                {
-                    Console.WriteLine(tree.Root.Children[count1].Data);
-                    parentAndChild += "Parent= " + tree.Root.Children[count1].Data;
-                    child = false;
-                }
-                catch 
-                {
-                    parent = true;
-                }
-                while (child == false)
-                {
-                    try
-                    {
-                        Console.WriteLine(tree.Root.Children[count1].Children[count2].Data);
-                        parentAndChild += " Child of " + tree.Root.Children[count1].Data + "= " + tree.Root.Children[count1].Children[count2].Data;
-                        count2++;
-                    }
-                    catch
-                    {
-                        child = true;
-                    }
-                }
-                Console.WriteLine(parentAndChild);
-                count1++;
-            }
-            Console.WriteLine(values);
 
             for (int i = 0; i < tree.Root.Children.Count; i++)
             {
                 string parentAndChild = "Parent = " + tree.Root.Children[i].Data;
-                for (int j = 0; j < tree.Root.Children[i].Children.Count; j++)
+                if (tree.Root.Children[i].Children != null)
                 {
-                    parentAndChild += "Child of " + tree.Root.Children[i].Data + " = " + tree.Root.Children[i].Children[j].Data;
+                    for (int j = 0; j < tree.Root.Children[i].Children.Count; j++)
+                    {
+                        parentAndChild += " Child = " + tree.Root.Children[i].Children[j].Data;
+                    }
                 }
+                
                 Console.WriteLine(parentAndChild);
             }
         }
